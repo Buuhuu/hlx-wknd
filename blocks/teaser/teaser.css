@@ -1,0 +1,120 @@
+.teaser {
+  display: flex;
+}
+
+.teaser .title * {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 400;
+  margin: 0.5em 0;
+}
+
+.teaser .pretitle p {
+  font-weight: 700;
+  line-height: 1em;
+  margin: 0;
+}
+
+.teaser .description p {
+  margin: 0;
+  line-height: 1.75;
+  font-size: var(--font-size-base);
+}
+
+.teaser .cta .button-container {
+  margin: 1em 0;
+}
+
+.teaser .cta .button {
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  padding: 1em 2.5em;
+}
+
+.teaser .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* hero */
+
+.teaser.hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.teaser.hero .image {
+  margin-left: calc(var(--gutter-padding) * -1);
+  margin-right: calc(var(--gutter-padding) * -1);
+  width: calc(100% + (var(--gutter-padding) * 2));
+  height: 400px;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.teaser.hero .image img {
+  object-position: center;
+}
+
+
+.teaser.hero .title * {
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 1165px) {
+  .teaser.hero .image {
+    height: 640px;
+    max-height: 640px;
+  }
+
+  .teaser.hero .content {
+    min-height: 180px;
+    margin-top: -180px;
+    width: calc(var(--max-width) - (var(--gutter-padding) * 2));
+    padding: 0 calc(var(--gutter-padding) * 2);
+    background-color: var(--background-color);
+  }
+}
+
+/* featured */
+
+.teaser.featured {
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.teaser.featured .image {
+  flex: 2;
+}
+
+.teaser.featured .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--highlight-color);
+  padding: 3.5em 2em 2em 2em;
+}
+
+.teaser.featured .description p {
+  font-size: var(--body-font-size-s);
+  text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+  .teaser.featured {
+    flex-direction: column;
+  }
+
+  .teaser.featured .image {
+    flex: 1;
+  }
+
+  .teaser.featured .content {
+    flex: 1;
+    margin-top: -1em;
+  }
+}

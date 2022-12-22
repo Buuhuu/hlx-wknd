@@ -1,0 +1,46 @@
+.image-list ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    line-height: 1.5;
+    gap: var(--gutter-padding);
+}
+
+.image-list ul li {
+    flex: 0 260px;
+    margin: 0 0 2rem;
+}
+
+.image-list .image img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-list .title {
+    color: var(--text-color);
+    font-size: var(--body-font-size-m);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.image-list .title * {
+    color: inherit;
+}
+
+.image-list .description p {
+    color: var(--text-color-secondary);
+    display: block;
+    font-size: var(--body-font-size-s);
+    line-height: 1.5;
+    margin: 1rem 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: 260px;
+}

@@ -1,0 +1,4 @@
+hr {
+    margin: 4em 0;
+    border: 1px solid var(--highlight-color);
+}

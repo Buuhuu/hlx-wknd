@@ -13,19 +13,10 @@ import {
   loadCSS,
 } from './lib-franklin.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['carousel']; // add your LCP blocks to the list
+const NO_SCRIPT_BLOCKS = ['separator']; 
+const NO_STYLE_BLOCKS = [];
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
-
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
-}
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -33,7 +24,7 @@ function buildHeroBlock(main) {
  */
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    // noop
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -89,7 +80,7 @@ export function addFavIcon(href) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-  await loadBlocks(main);
+  await loadBlocks(main, NO_STYLE_BLOCKS, NO_SCRIPT_BLOCKS);
 
   const { hash } = window.location;
   const element = hash ? main.querySelector(hash) : false;
@@ -99,6 +90,7 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+  loadCSS('https://fonts.googleapis.com/css2?family=Asar&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

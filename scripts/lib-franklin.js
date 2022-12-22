@@ -343,29 +343,33 @@ export function buildBlock(blockName, content) {
  * Loads JS and CSS for a block.
  * @param {Element} block The block element
  */
-export async function loadBlock(block) {
+export async function loadBlock(block, noStyle = [], noScript = []) {
   const status = block.getAttribute('data-block-status');
   if (status !== 'loading' && status !== 'loaded') {
     block.setAttribute('data-block-status', 'loading');
     const blockName = block.getAttribute('data-block-name');
     try {
-      const cssLoaded = new Promise((resolve) => {
-        loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`, resolve);
-      });
-      const decorationComplete = new Promise((resolve) => {
-        (async () => {
-          try {
-            const mod = await import(`../blocks/${blockName}/${blockName}.js`);
-            if (mod.default) {
-              await mod.default(block);
-            }
-          } catch (error) {
-            // eslint-disable-next-line no-console
-            console.log(`failed to load module for ${blockName}`, error);
-          }
-          resolve();
-        })();
-      });
+      const cssLoaded = noStyle.indexOf(blockName) < 0
+        ? new Promise((resolve) => {
+            loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`, resolve);
+        })
+        : Promise.resolve();
+      const decorationComplete = noScript.indexOf(blockName) < 0
+        ? new Promise((resolve) => {
+            (async () => {
+              try {
+                const mod = await import(`../blocks/${blockName}/${blockName}.js`);
+                if (mod.default) {
+                  await mod.default(block);
+                }
+              } catch (error) {
+                // eslint-disable-next-line no-console
+                console.log(`failed to load module for ${blockName}`, error);
+              }
+              resolve();
+            })();
+          })
+        : Promise.resolve();
       await Promise.all([cssLoaded, decorationComplete]);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -379,12 +383,12 @@ export async function loadBlock(block) {
  * Loads JS and CSS for all blocks in a container element.
  * @param {Element} main The container element
  */
-export async function loadBlocks(main) {
+export async function loadBlocks(main, noStyle = [], noScript = []) {
   updateSectionsStatus(main);
   const blocks = [...main.querySelectorAll('div.block')];
   for (let i = 0; i < blocks.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
-    await loadBlock(blocks[i]);
+    await loadBlock(blocks[i], noStyle, noScript);
     updateSectionsStatus(main);
   }
 }
