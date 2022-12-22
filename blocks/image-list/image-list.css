@@ -32,7 +32,7 @@
     color: inherit;
 }
 
-.image-list .description p {
+.image-list .description {
     color: var(--text-color-secondary);
     display: block;
     font-size: var(--body-font-size-s);

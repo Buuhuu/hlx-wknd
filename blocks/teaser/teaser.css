@@ -8,19 +8,19 @@
   margin: 0.5em 0;
 }
 
-.teaser .pretitle p {
+.teaser .pretitle {
   font-weight: 700;
   line-height: 1em;
   margin: 0;
 }
 
-.teaser .description p {
+.teaser .description {
   margin: 0;
   line-height: 1.75;
   font-size: var(--font-size-base);
 }
 
-.teaser .cta .button-container {
+.teaser .cta.button-container {
   margin: 1em 0;
 }
 
@@ -99,7 +99,7 @@
   padding: 3.5em 2em 2em 2em;
 }
 
-.teaser.featured .description p {
+.teaser.featured .description {
   font-size: var(--body-font-size-s);
   text-align: left;
 }

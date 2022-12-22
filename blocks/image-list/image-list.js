@@ -10,6 +10,10 @@ export default async function decorate(block) {
             const el = child.children[idx.image];
             if (el) {
                 el.classList.add(cls);
+                if (el.matches('.button-container')) {
+                    el.classList.remove('button-container');
+                    el.querySelector('a').classList.remove('button', 'primary', 'secondary');
+                }
                 li.appendChild(el);
             }
         });
