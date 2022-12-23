@@ -208,7 +208,7 @@ export function readBlockConfig(block) {
       const cols = [...row.children];
       if (cols[1]) {
         const col = cols[1];
-        const name = toClassName(cols[0].textContent);
+        const name = toClassName(cols[0].textContent.trim());
         let value = '';
         if (col.querySelector('a')) {
           const as = [...col.querySelectorAll('a')];
@@ -231,7 +231,7 @@ export function readBlockConfig(block) {
           } else {
             value = ps.map((p) => p.textContent);
           }
-        } else value = row.children[1].textContent;
+        } else value = row.children[1].textContent.trim();
         config[name] = value;
       }
     }
@@ -533,9 +533,12 @@ export async function waitForLCP(lcpBlocks) {
  */
 
 export function loadHeader(header) {
-  const headerBlock = buildBlock('header', '');
-  header.append(headerBlock);
-  decorateBlock(headerBlock);
+  let headerBlock = header.querySelector('.block');
+  if (!headerBlock) {
+    headerBlock = buildBlock('header', '')
+    header.append(headerBlock);
+    decorateBlock(headerBlock);
+  }
   return loadBlock(headerBlock);
 }
 
@@ -544,9 +547,12 @@ export function loadHeader(header) {
  */
 
 export function loadFooter(footer) {
-  const footerBlock = buildBlock('footer', '');
-  footer.append(footerBlock);
-  decorateBlock(footerBlock);
+  let footerBlock = footer.querySelector('.block');
+  if (!footerBlock) {
+    footerBlock = buildBlock('footer', '');
+    footer.append(footerBlock);
+    decorateBlock(footerBlock);
+  }
   return loadBlock(footerBlock);
 }
 

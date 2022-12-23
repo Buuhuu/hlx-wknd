@@ -1,0 +1,32 @@
+.navigation-container>div:first-child img {
+    max-width: 128px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.navigation nav {
+    padding-top: 15px;
+}
+
+.navigation nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.navigation nav a {
+    color: var(--text-color);
+    font-size: var(--body-font-size-s);
+    text-transform: uppercase;
+    padding: 15px 17px;
+    text-decoration: none;
+}
+
+.navigation nav a:hover,
+.navigation nav a:focus {
+    background-color: var(--brand-primary);
+}
+
+.navigation nav>ul>li>a {
+    display: none;
+}

@@ -43,6 +43,8 @@
   --text-color-secondary: #696969;
   --text-color-inverse: #ebebeb;
   --background-color: #fff;
+  --background-color-secondary: #202020;
+  --background-color-inverse: #202020;
   --highlight-color: #ebebeb;
   --link-color: #0045ff;
   --link-hover-color: #0045ff;
@@ -144,16 +146,21 @@ h6 {
   font-size: var(--heading-font-size-xs)
 }
 
-p,
+p {
+  margin: 0 0 calc(var(--line-height-base) * var(--font-size-base) / 2);
+  padding: 0;
+  font-size: var(--font-size-base);
+  line-height: calc(var(--line-height-base) + 1);
+  text-align: justify;
+}
+
 dl,
 ol,
 ul,
 pre,
 blockquote {
-  margin: 0 0 calc(var(--line-height-base) * var(--font-size-base) / 2);
-  font-size: var(--font-size-base);
-  line-height: calc(var(--line-height-base) + 1);
-  text-align: justify;
+  margin: 0;
+  padding: 0;
 }
 
 a:any-link {
@@ -213,7 +220,7 @@ button {
 
 a.button.secondary,
 button.secondary {
-  background-color: var(--brand-secondary);
+  background-color: var(--background-color-inverse);
   color: var(--text-color-inverse)
 }
 
@@ -260,7 +267,9 @@ main .section {
 
 /* progressive section appearance */
 main .section[data-section-status='loading'],
-main .section[data-section-status='initialized'] {
+main .section[data-section-status='initialized'],
+.block[data-block-status='loading'],
+.block[data-block-status='initialized'] {
   display: none;
 }
 

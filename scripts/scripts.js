@@ -1,8 +1,5 @@
 import {
   sampleRUM,
-  buildBlock,
-  loadHeader,
-  loadFooter,
   decorateButtons,
   decorateIcons,
   decorateSections,
@@ -11,11 +8,15 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  decorateBlock,
+  loadBlock,
+  loadHeader,
+  loadFooter,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = ['carousel']; // add your LCP blocks to the list
-const NO_SCRIPT_BLOCKS = ['separator']; 
-const NO_STYLE_BLOCKS = [];
+export const NO_SCRIPT_BLOCKS = ['separator']; 
+export const NO_STYLE_BLOCKS = [];
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 /**
@@ -24,7 +25,18 @@ window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information 
  */
 function buildAutoBlocks(main) {
   try {
-    // noop
+    // move header block into <header> and footer into <footer>
+    Object.entries({
+      '.header': 'header',
+      '.footer': 'footer'
+    }).forEach(([from, to]) => {
+      const block = main.querySelector(from);
+      if (block) {
+        if (!block.nextElementSibling) block.parentElement.remove();
+        document.querySelector(to).appendChild(block);  
+        decorateBlock(block);
+      }
+    });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
