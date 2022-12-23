@@ -27,6 +27,6 @@
     background-color: var(--brand-primary);
 }
 
-.navigation nav>ul>li>p>a {
+.navigation nav>ul>li>p {
     display: none;
 }

@@ -37,10 +37,11 @@ header .utility-menu a {
 header .navigation-container {
   display: grid;
   grid-template-areas: 'logo blank navigation search';
-  grid-template-columns: 194px auto 368px 194px;
+  grid-template-columns: 166px auto 368px 166px;
+  grid-gap: calc(var(--gutter-padding) * 2);
 }
 
-header .navigation-container > div:nth-child(1) { grid-area: logo }
+header .navigation-container > div:nth-child(1) { grid-area: logo; padding: 0 var(--gutter-padding) }
 header .navigation-container > div:nth-child(2) { grid-area: navigation }
 header .navigation-container > div:nth-child(3) { grid-area: search }
 
