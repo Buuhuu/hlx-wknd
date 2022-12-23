@@ -386,11 +386,10 @@ export async function loadBlock(block, noStyle = [], noScript = []) {
 export async function loadBlocks(main, noStyle = [], noScript = []) {
   updateSectionsStatus(main);
   const blocks = [...main.querySelectorAll('div.block')];
-  for (let i = 0; i < blocks.length; i += 1) {
-    // eslint-disable-next-line no-await-in-loop
-    await loadBlock(blocks[i], noStyle, noScript);
+  await Promise.all(blocks.map(async (block) => {
+    await loadBlock(block, noStyle, noScript);
     updateSectionsStatus(main);
-  }
+  }));
 }
 
 /**
