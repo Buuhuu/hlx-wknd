@@ -21,6 +21,5 @@ export default async function decorate(block) {
     decorateSections(block);
     decorateBlocks(block);
     await loadBlocks(block, NO_STYLE_BLOCKS, NO_SCRIPT_BLOCKS);
-    block.append(block);
   }
 }

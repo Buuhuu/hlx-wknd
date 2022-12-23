@@ -4,6 +4,11 @@
     margin-bottom: 7px;
 }
 
+.navigation {
+    margin: 0;
+    padding: 0;
+}
+
 .navigation nav {
     padding-top: 15px;
 }
@@ -14,19 +19,19 @@
     flex-direction: row;
 }
 
-.navigation nav a {
-    color: var(--text-color);
+.navigation nav>ul>li>p {
+    display: none;
+}
+
+.navigation nav a:any-link {
+    color: inherit;
     font-size: var(--body-font-size-s);
     text-transform: uppercase;
     padding: 15px 17px;
     text-decoration: none;
 }
 
-.navigation nav a:hover,
-.navigation nav a:focus {
+.navigation.header nav a:hover,
+.navigation.header nav a:focus {
     background-color: var(--brand-primary);
-}
-
-.navigation nav>ul>li>p {
-    display: none;
 }
