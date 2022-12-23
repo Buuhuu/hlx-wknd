@@ -1,3 +1,10 @@
+header > .header {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  background-color: var(--background-color);
+}
+
 .header a:any-link {
   color: currentcolor;
   font-size: inherit;
@@ -51,4 +58,33 @@
 .header .navigation-container.header {
   padding-top: 50px;
   padding-bottom: 50px;
+  transition:  padding-bottom 0s ease-out, padding-top 0s;
+}
+
+@media screen and (max-width: 1024px) {
+  .header .navigation-container.header {
+    grid-template-areas: 'logo blank search';
+    grid-template-columns: 166px auto 224px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .header .navigation-container > div:nth-child(2) {
+    display: none;
+  }
+}
+
+.header.scrolly {
+  box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.26);
+}
+
+.header.scrolly .navigation-container.header {
+  transition:  padding-bottom 0.5s ease-out, padding-top 0.5s ease;
+}
+
+@media screen and (min-width: 1025px) {
+  .header.scrolly .navigation-container.header {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 }
