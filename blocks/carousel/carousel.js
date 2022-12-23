@@ -1,9 +1,4 @@
-import { loadCSS } from '../../scripts/lib-franklin.js';
-
 export default async function decorate(block) {
-    const additionalStyles = [
-        new Promise((r) => loadCSS(`${window.hlx.codeBasePath}/blocks/teaser/teaser.css`, r))
-    ];
     const th = block.firstElementChild;
     th.remove();
     const idx = [...th.children]
@@ -31,6 +26,4 @@ export default async function decorate(block) {
             }).forEach((el) => el && contentEl.appendChild(el));
         slide.append(contentEl);
     });
-
-    await Promise.all(additionalStyles);
 }
