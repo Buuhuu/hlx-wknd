@@ -10,7 +10,7 @@
   }
 }
 
-.carousel-slide {
+.carousel-slide:not(:first-child) {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
   -webkit-animation-fill-mode: both;
