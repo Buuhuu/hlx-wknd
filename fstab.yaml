@@ -1,5 +1,5 @@
 mountpoints:
   /: 
-    url: https://drudolph-wknd.loca.lt
+    url: https://6ddd-192-147-117-11.ngrok.io
     type: markup
     suffix: ".semantic.html"
