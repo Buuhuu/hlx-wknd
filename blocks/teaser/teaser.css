@@ -14,7 +14,8 @@
   margin: 0;
 }
 
-.teaser .description {
+.teaser .description,
+.teaser .description > * {
   margin: 0;
   line-height: 1.75;
   font-size: var(--font-size-base);
@@ -106,7 +107,8 @@
   padding: 3.5em 2em 2em 2em;
 }
 
-.teaser.featured .description {
+.teaser.featured .description,
+.teaser.featured .description > * {
   font-size: var(--body-font-size-s);
   text-align: left;
 }
@@ -124,4 +126,68 @@
     flex: 1;
     margin-top: -1em;
   }
+}
+
+/* list */
+
+.teaser.list {
+  flex-direction: column;
+}
+
+.teaser.list .image {
+  max-height: 200px;
+  margin-top: 7px;
+  margin-bottom: 14.5px;
+}
+
+.teaser.list .image img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.teaser.list .title > * {
+  font-size: var(--body-font-size-m);
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.teaser.list .description,
+.teaser.list .description > * {
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-secondary);
+  text-transform: uppercase;
+}
+
+/* secure */
+
+body.anonymous .teaser.secure > div {
+  opacity: 0.65;
+}
+
+body.anonymous .teaser.secure::before {
+  font-size: 24px;
+  content: ' ';
+  color: black;
+  background: 
+    url(../../icons/lock.svg), 
+    linear-gradient(to top left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 50%, var(--brand-primary) 50%, var(--brand-primary) 100%);
+  background-position: center center, center center;
+  background-repeat: no-repeat, repeat;
+  background-size: 24px 24px, 100% 100%;
+  position: relative;
+  top: 55px;
+  width: 24px;
+  height: 24px;
+  padding: 12px;
+  z-index: 6;
+}
+
+body.anonymous .teaser .cta .button {
+  color: var(--text-color-secondary);
+  background-color: var(--background-color-secondary-bright);
+  text-transform: uppercase;
+  padding: 0.5em 1em;
+  font-size: var(--body-font-size-s);
+  height: auto;
 }

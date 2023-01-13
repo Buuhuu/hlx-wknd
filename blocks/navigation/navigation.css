@@ -37,6 +37,7 @@
     line-height: 1em;
 }
 
+.navigation.header nav a.active,
 .navigation.header nav a:hover,
 .navigation.header nav a:focus {
     background-color: var(--brand-primary);

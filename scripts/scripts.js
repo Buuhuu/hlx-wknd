@@ -43,6 +43,30 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Merge consecurtive -wrappers into a single one if the content are grid cells
+ * @param {*} main 
+ */
+function decorateGrid(main) {
+  let lastWrapper = null;
+  main.querySelectorAll('.section > div').forEach((wrapper) => {
+    let defaultContent = wrapper.matches('.default-content-wrapper');
+    let gridCell = !defaultContent && [...wrapper.firstElementChild.classList].find(cls => cls.match(/(offset|width)-[^-]+-\d+/));
+    if (gridCell) {
+      if (lastWrapper == null) {
+        // new grid
+        lastWrapper = wrapper
+        lastWrapper.className = 'grid-wrapper';
+      } else {
+        lastWrapper.appendChild(wrapper.firstElementChild);
+        wrapper.remove();
+      }
+    } else {
+      lastWrapper = null;
+    }
+  })
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -54,6 +78,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateGrid(main);
 }
 
 /**
@@ -61,6 +86,7 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
+  document.body.classList.add('anonymous');
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {

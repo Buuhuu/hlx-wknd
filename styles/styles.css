@@ -44,6 +44,7 @@
   --text-color-inverse: #ebebeb;
   --background-color: #fff;
   --background-color-secondary: #202020;
+  --background-color-secondary-bright: #ebebeb;
   --background-color-inverse: #202020;
   --highlight-color: #ebebeb;
   --link-color: #0045ff;
@@ -80,6 +81,12 @@
   --screen-small: 768px;
   --screen-medium: 1024px;
   --screen-large: 1200px;
+}
+
+@media screen and (max-width: 1024px) {
+  :root {
+    --nav-height: 130px;
+  }
 }
 
 body {
@@ -266,14 +273,13 @@ main .section {
 }
 
 /* progressive section appearance */
+
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'],
 .block[data-block-status='loading'],
 .block[data-block-status='initialized'] {
   display: none;
 }
-
-/* media queries */
 
 @media screen and (min-width: 1025px) {
   main .section.fixed-width>div {
@@ -282,8 +288,19 @@ main .section[data-section-status='initialized'],
   }
 }
 
-@media screen and (max-width: 1024px) {
-  :root {
-    --nav-height: 130px;
-  }
+/* grid */
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: calc(2 * var(--gutter-padding));
+}
+
+.grid-wrapper .width-default-4 { grid-column: span 4; }
+
+@media screen and (max-width: 767px) {
+  .grid-wrapper .width-phone-12 { grid-column: span 12; }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .grid-wrapper .width-table-6 { grid-column: span 6; }
 }

@@ -1,12 +1,16 @@
-hr {
+.separator hr {
     margin: 4em 0;
     border: 1px solid var(--highlight-color);
 }
 
-.hidden hr {
+.separator.hidden hr {
     border: none;
 }
 
-.small hr {
+.separator.small hr {
     margin: 1em 0;
+}
+
+.separator.medium hr {
+    margin: 2em 0;
 }
