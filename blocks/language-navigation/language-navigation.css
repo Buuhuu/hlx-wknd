@@ -5,7 +5,7 @@
 
 /* header */
 
-.language-navigation.header > nav {
+.utility-menu .language-navigation > nav {
     position: fixed;
     top: 38px;
     z-index: 999;
@@ -14,7 +14,7 @@
     display: none;
 }
 
-.language-navigation.header > a {
+.utility-menu .language-navigation > a {
     padding: 0 var(--gutter-padding) 0 35px;
     background-repeat: no-repeat;
     background-size: 25px;
@@ -22,7 +22,7 @@
     background-position-y: -1px;
 }
 
-.language-navigation.header > a::after {
+.utility-menu .language-navigation > a::after {
     border-style: solid;
     border-width: 0.10em 0.10em 0 0;
     content: '';
@@ -36,15 +36,15 @@
     width: 0.45em;
 }
 
-.language-navigation.header > a.open::after {
+.utility-menu .language-navigation > a.open::after {
     top: 0.65em;
     transform: rotate(-45deg);
 }
 
-.language-navigation.header > a.countrycode-ca { background-image: url('../../icons/flag-ca.svg') }
-.language-navigation.header > a.countrycode-ch { background-image: url('../../icons/flag-ch.svg') }
-.language-navigation.header > a.countrycode-de { background-image: url('../../icons/flag-de.svg') }
-.language-navigation.header > a.countrycode-es { background-image: url('../../icons/flag-es.svg') }
-.language-navigation.header > a.countrycode-fr { background-image: url('../../icons/flag-fr.svg') }
-.language-navigation.header > a.countrycode-it { background-image: url('../../icons/flag-it.svg') }
-.language-navigation.header > a.countrycode-us { background-image: url('../../icons/flag-us.svg') }
+.utility-menu .language-navigation > a.countrycode-ca { background-image: url('../../icons/flag-ca.svg') }
+.utility-menu .language-navigation > a.countrycode-ch { background-image: url('../../icons/flag-ch.svg') }
+.utility-menu .language-navigation > a.countrycode-de { background-image: url('../../icons/flag-de.svg') }
+.utility-menu .language-navigation > a.countrycode-es { background-image: url('../../icons/flag-es.svg') }
+.utility-menu .language-navigation > a.countrycode-fr { background-image: url('../../icons/flag-fr.svg') }
+.utility-menu .language-navigation > a.countrycode-it { background-image: url('../../icons/flag-it.svg') }
+.utility-menu .language-navigation > a.countrycode-us { background-image: url('../../icons/flag-us.svg') }

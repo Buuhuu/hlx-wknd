@@ -1,9 +1,6 @@
+const idx = { image: 0, pretitle: 1, title: 2, description: 3, cta: 4, styles: 5 };
+
 export default async function decorate(block) {
-    const th = block.firstElementChild;
-    th.remove();
-    const idx = [...th.children]
-        .map(child => child.innerText.trim())
-        .reduce((left, right, i) => ({ ...left, [right]: i }), {});
     [...block.children].forEach((slide, index) => {
         slide.classList.add('carousel-slide');
 

@@ -58,6 +58,13 @@
   object-position: center;
 }
 
+.teaser.hero.hero-image-bottom .image img {
+  object-position: bottom;
+}
+
+.teaser.hero.hero-image-top .image img {
+  object-position: top;
+}
 
 .teaser.hero .title * {
   margin-bottom: 0;

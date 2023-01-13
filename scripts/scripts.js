@@ -9,7 +9,6 @@ import {
   loadBlocks,
   loadCSS,
   decorateBlock,
-  loadBlock,
   loadHeader,
   loadFooter,
 } from './lib-franklin.js';
@@ -27,11 +26,11 @@ function buildAutoBlocks(main) {
   try {
     // move header block into <header> and footer into <footer>
     Object.entries({
-      '.header': 'header',
-      '.footer': 'footer'
+      ':scope > div:first-child > div': 'header',
+      ':scope > div:last-child > div': 'footer'
     }).forEach(([from, to]) => {
       const block = main.querySelector(from);
-      if (block) {
+      if (block && block.className === to) {
         if (!block.nextElementSibling) block.parentElement.remove();
         document.querySelector(to).appendChild(block);  
         decorateBlock(block);
