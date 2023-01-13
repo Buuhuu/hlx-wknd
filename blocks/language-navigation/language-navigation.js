@@ -16,7 +16,7 @@ export default async function decorate(block) {
     const nav = document.createElement('nav');
     nav.appendChild(ul);
 
-    const [, country, language] = window.location.href.match('\/([^/]{2})\/([^/]{2})([/.]|$)')
+    const [, country, language] = window.location.href.match('\/([^/]{2})\/([^/]{2})([/.]|$)') || ['', 'us', 'en'];
     const toggle = document.createElement('a');
     toggle.classList.add(`countrycode-${country}`);
     toggle.ariaLabel = 'toggle language';
