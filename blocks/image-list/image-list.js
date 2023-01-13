@@ -1,11 +1,11 @@
-const idx = { image: 0, title: 1, description: 2 };
+const keys = ['image', 'title', 'description'];
 
 export default async function decorate(block) {
     const ul = document.createElement('ul');    
     [...block.children].forEach((child) => {
         const li = document.createElement('li');
-        ['image', 'title', 'description'].forEach((cls) => {
-            const el = child.children[idx.image];
+        keys.forEach((cls) => {
+            const el = child.children[0];
             if (el) {
                 el.classList.add(cls);
                 if (el.matches('.button-container')) {
@@ -15,6 +15,14 @@ export default async function decorate(block) {
                 li.appendChild(el);
             }
         });
+        const a = li.querySelector('a');
+        const picture = li.querySelector('picture');
+        if (a && picture) {
+            const clone = a.cloneNode();
+            const parent = picture.parentElement;
+            clone.appendChild(picture);
+            parent.appendChild(clone);
+        }
         ul.appendChild(li);
     });
     block.textContent = null;
