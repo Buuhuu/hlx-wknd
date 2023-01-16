@@ -4,6 +4,8 @@ export default async function decorate(block) {
     nav.appendChild(container.querySelector('ul'));
     container.replaceWith(nav);
     const [currentPath] = window.location.pathname.split('.');
-    const currentLink = block.querySelector(`a[href='${currentPath}']`);
-    if (currentLink) currentLink.classList.add('active');
+    block.querySelectorAll('a').forEach((link) => {
+        const { pathname } = new URL(link);
+        if (currentPath === pathname || currentPath.startsWith(pathname)) link.classList.add('active')
+    });
 }
