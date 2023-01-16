@@ -1,5 +1,5 @@
 import { readBlockConfig, decorateSections, decorateBlocks, loadBlocks } from '../../scripts/lib-franklin.js';
-import { NO_SCRIPT_BLOCKS, NO_STYLE_BLOCKS } from '../../scripts/scripts.js';
+import { decorateGrid, NO_SCRIPT_BLOCKS, NO_STYLE_BLOCKS } from '../../scripts/scripts.js';
 
 /**
  * loads and decorates the footer
@@ -18,6 +18,7 @@ export default async function decorate(block) {
 
     decorateSections(block);
     decorateBlocks(block);
+    decorateGrid(block);
     await loadBlocks(block, NO_STYLE_BLOCKS, NO_SCRIPT_BLOCKS);
   }
 }

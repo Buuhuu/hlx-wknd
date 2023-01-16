@@ -1,0 +1,38 @@
+.breadcrumb ul {
+    display: inline-block;
+    list-style: none;
+    padding: 12px 12px 0px 0px;
+    margin-bottom: 0px;
+    font-size: var(--body-font-size-s);
+}
+
+.breadcrumb ul li {
+    display: inline-block;
+    padding: 10px 0;
+    text-transform: uppercase;
+    vertical-align: top;
+}
+
+.breadcrumb ul li::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: var(--brand-primary);
+    -webkit-mask-image: url('../../icons/play3.svg');
+    mask-image: url('../../icons/play3.svg');
+    margin: -2px 5px;
+}
+
+.breadcrumb ul li:first-child::before {
+    display: none;
+}
+
+.breadcrumb a {
+    color: currentColor;
+    text-decoration: none !important;
+}
+
+.breadcrumb ul li:first-child a {
+    font-weight: 600;
+}

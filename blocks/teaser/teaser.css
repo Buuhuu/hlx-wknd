@@ -183,7 +183,7 @@ body.anonymous .teaser.secure::before {
   z-index: 6;
 }
 
-body.anonymous .teaser .cta .button {
+body.anonymous .teaser.secure .cta .button {
   color: var(--text-color-secondary);
   background-color: var(--background-color-secondary-bright);
   text-transform: uppercase;

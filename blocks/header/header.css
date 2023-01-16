@@ -16,7 +16,7 @@ header > .header {
 
 .header .utility-menu > div,
 .header .navigation-container {
-  max-width: var(--max-width);
+  max-width: calc(var(--max-width) - 2 * var(--gutter-padding));
   margin: 0 auto;
   padding: 0 var(--gutter-padding);
 }
@@ -37,21 +37,8 @@ header > .header {
 }
 
 .header .utility-menu a {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
-
-/* navigtation */
-
-.header .navigation-container {
-  display: grid;
-  grid-template-areas: 'logo blank navigation search';
-  grid-template-columns: 166px auto 368px 166px;
-  gap: calc(var(--gutter-padding) * 2);
-}
-
-.header .navigation-container > div:nth-child(1) { grid-area: logo; padding: 0 var(--gutter-padding) }
-.header .navigation-container > div:nth-child(2) { grid-area: navigation }
-.header .navigation-container > div:nth-child(3) { grid-area: search }
 
 /* navigation header */
 

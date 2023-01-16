@@ -18,6 +18,7 @@
     list-style: none;
     display: flex;
     flex-direction: row;
+    
 }
 
 .navigation nav>ul>li>p {
@@ -43,4 +44,7 @@
     background-color: var(--brand-primary);
 }
 
+.navigation.header nav ul {
+    justify-content: right;
+}
 

@@ -13,9 +13,9 @@ import {
   loadFooter,
 } from './lib-franklin.js';
 
-const LCP_BLOCKS = ['carousel']; // add your LCP blocks to the list
-export const NO_SCRIPT_BLOCKS = ['separator']; 
-export const NO_STYLE_BLOCKS = [];
+const LCP_BLOCKS = ['carousel', 'teaser']; // add your LCP blocks to the list
+export const NO_SCRIPT_BLOCKS = ['separator', 'breadcrumb', 'grid-cell'];
+export const NO_STYLE_BLOCKS = ['grid-cell'];
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 /**
@@ -32,7 +32,7 @@ function buildAutoBlocks(main) {
       const block = main.querySelector(from);
       if (block && block.className === to) {
         if (!block.nextElementSibling) block.parentElement.remove();
-        document.querySelector(to).appendChild(block);  
+        document.querySelector(to).appendChild(block);
         decorateBlock(block);
       }
     });
@@ -46,11 +46,13 @@ function buildAutoBlocks(main) {
  * Merge consecurtive -wrappers into a single one if the content are grid cells
  * @param {*} main 
  */
-function decorateGrid(main) {
+export function decorateGrid(main) {
+  const gridCellPattern = /(offset|width)-(default|tablet|phone)+-(\d+)/;
   let lastWrapper = null;
-  main.querySelectorAll('.section > div').forEach((wrapper) => {
-    let defaultContent = wrapper.matches('.default-content-wrapper');
-    let gridCell = !defaultContent && [...wrapper.firstElementChild.classList].find(cls => cls.match(/(offset|width)-[^-]+-\d+/));
+  // inside sections
+  main.querySelectorAll(':scope > .section > div').forEach((wrapper) => {
+    const defaultContent = wrapper.matches('.default-content-wrapper');
+    const gridCell = !defaultContent && [...wrapper.firstElementChild.classList].find(cls => cls.match(gridCellPattern));
     if (gridCell) {
       if (lastWrapper == null) {
         // new grid
@@ -63,7 +65,41 @@ function decorateGrid(main) {
     } else {
       lastWrapper = null;
     }
-  })
+  });
+  // for sections create a new intermediate wrapper to apply the grid styles to
+  lastWrapper = null;
+  main.querySelectorAll(':scope > .section').forEach((section) => {
+    const nonGridClassees = [...section.classList].filter(cls => !cls.match(gridCellPattern));
+    const isGridCell = nonGridClassees.length !== section.classList.length;
+    if (isGridCell) {
+      if (lastWrapper == null) {
+        const newSection = document.createElement('div');
+        newSection.className = nonGridClassees.join(' ');
+        newSection.setAttribute('data-section-status', 'initialized');
+        lastWrapper = document.createElement('div');
+        lastWrapper.className = `grid-wrapper`;
+        newSection.appendChild(lastWrapper);
+        section.insertAdjacentElement('beforebegin', newSection);
+      }
+      nonGridClassees.forEach((cls) => section.classList.remove(cls));
+      delete section.dataset.sectionStatus;
+      lastWrapper.appendChild(section);
+    } else {
+      lastWrapper = null;
+    }
+  });
+  // make offsets absolute
+  main.querySelectorAll(':scope .grid-wrapper').forEach((grid) => {
+    let offsets = { default: 0, phone: 0, tablet: 0 };
+    [...grid.children].forEach((cell) => [...cell.classList].forEach((cls) => {
+      const [, type, breakpoint, width] = cls.match(gridCellPattern) || [];
+      offsets[breakpoint] += parseInt(width);
+      if (type === 'offset') {
+        cell.classList.remove(cls);
+        cell.classList.add(`offset-${breakpoint}-${offsets[breakpoint] % 12}`);
+      }
+    }));
+  });
 }
 
 /**

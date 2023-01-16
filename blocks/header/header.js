@@ -1,5 +1,5 @@
 import { readBlockConfig, decorateBlocks, decorateSections, loadBlocks, buildBlock } from '../../scripts/lib-franklin.js';
-import { NO_SCRIPT_BLOCKS, NO_STYLE_BLOCKS } from '../../scripts/scripts.js';
+import { decorateGrid, NO_SCRIPT_BLOCKS, NO_STYLE_BLOCKS } from '../../scripts/scripts.js';
 
 function toggleScrolly(block) {
   if (window.pageYOffset > 25) {
@@ -24,13 +24,10 @@ export default async function decorate(block) {
 
     // decorate nav DOM
     block.innerHTML = html;
-    
-    const searchBlock = buildBlock('search', '');
-    searchBlock.classList.add('header');
-    block.querySelector('.navigation').insertAdjacentElement('afterend', searchBlock);
 
     decorateSections(block);
     decorateBlocks(block);
+    decorateGrid(block);
     await loadBlocks(block, NO_STYLE_BLOCKS, NO_SCRIPT_BLOCKS);
 
     document.addEventListener('scroll', () => toggleScrolly(block), { capture: false, passive: true });

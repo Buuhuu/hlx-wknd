@@ -129,6 +129,14 @@ h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
+h4,
+h5,
+h6 {
+  font-family: var(--body-font-family);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 h1 {
   font-size: var(--heading-font-size-xxl)
 }
@@ -164,10 +172,13 @@ p {
 dl,
 ol,
 ul,
-pre,
-blockquote {
+pre {
   margin: 0;
   padding: 0;
+}
+
+blockquote {
+  margin: 1em 40px;
 }
 
 a:any-link {
@@ -295,12 +306,29 @@ main .section[data-section-status='initialized'],
   gap: calc(2 * var(--gutter-padding));
 }
 
-.grid-wrapper .width-default-4 { grid-column: span 4; }
+.grid-wrapper > div {
+  --grid-offset: auto;
+  --grid-span: 1;
+  grid-column: var(--grid-offset) / span var(--grid-span);
+}
+
+.grid-wrapper > div.width-default-2 { --grid-span: 2; }
+.grid-wrapper > div.width-default-3 { --grid-span: 3; }
+.grid-wrapper > div.width-default-4 { --grid-span: 4; }
+.grid-wrapper > div.width-default-6 { --grid-span: 6; }
+.grid-wrapper > div.width-default-8 { --grid-span: 8; }
+.grid-wrapper > div.offset-default-2 { --grid-offset: 3; }
+.grid-wrapper > div.offset-default-9 { --grid-offset: 10; }
 
 @media screen and (max-width: 767px) {
-  .grid-wrapper .width-phone-12 { grid-column: span 12; }
+  .grid-wrapper > div.width-phone-4 { --grid-span: 4; }
+  .grid-wrapper > div.width-phone-6 { --grid-span: 6; }
+  .grid-wrapper > div.width-phone-12 { --grid-span: 12; }
+  .grid-wrapper > div.offset-phone-4 { --grid-offset: 5; }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .grid-wrapper .width-table-6 { grid-column: span 6; }
+  .grid-wrapper > div.width-tablet-4 { --grid-span: 4; }
+  .grid-wrapper > div.width-tablet-6 { --grid-span: 6; }
+  .grid-wrapper > div.offset-tablet-4 { --grid-offset: 5; }
 }
