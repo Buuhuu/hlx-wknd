@@ -262,7 +262,7 @@ main input:hover {
   border: 1px solid var(--text-color);
 }
 
-/* default content */
+/* default content fix */
 
 main img {
   max-width: 100%;
