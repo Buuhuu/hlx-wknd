@@ -266,7 +266,7 @@ main input:hover {
 
 main img {
   max-width: 100%;
-  width: auto;
+  height: auto;
 }
 
 main .default-content-wrapper h2::after {
