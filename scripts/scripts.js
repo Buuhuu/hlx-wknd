@@ -24,6 +24,9 @@ window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information 
  */
 function buildAutoBlocks(main) {
   try {
+    // remove last section if empty
+    const lastSection = [...main.children].pop();
+    if (!lastSection.children.length) lastSection.remove();
     // move header block into <header> and footer into <footer>
     Object.entries({
       ':scope > div:first-child > div': 'header',
